@@ -3,7 +3,7 @@ package com.hanniel.todolist.domain.tasks;
 import com.hanniel.todolist.Dtos.TaskDTO;
 import jakarta.persistence.*;
 
-@Entity
+@Entity()
 @Table(name = "task")
 public class Task {
 
