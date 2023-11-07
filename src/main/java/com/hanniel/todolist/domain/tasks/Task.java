@@ -1,5 +1,6 @@
 package com.hanniel.todolist.domain.tasks;
 
+import com.hanniel.todolist.Dtos.TaskDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,10 +10,14 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "taskStatus")
     private TaskStatus taskStatus;
 
+    @Column(name = "description")
     private String description;
 
     public Task() {
@@ -22,6 +27,12 @@ public class Task {
         this.name = name;
         this.taskStatus = taskStatus;
         this.description = description;
+    }
+
+    public Task(TaskDTO data){
+        this.name = data.name();
+        this.taskStatus = data.taskStatus();
+        this.description = data.description();
     }
 
     public Long getId() {
