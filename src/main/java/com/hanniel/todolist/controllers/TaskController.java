@@ -26,7 +26,7 @@ public class TaskController {
         return new ResponseEntity<>(taskService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/task/{name}")
+    @GetMapping(path = "/find/{name}")
     public ResponseEntity<Task> findTaskByName(@PathVariable String name){
         return new ResponseEntity<>(taskService.findByName(name), HttpStatus.OK);
     }
