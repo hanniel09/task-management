@@ -15,32 +15,32 @@ public class TaskService {
     @Autowired
     TaskRepository taskRepository;
 
-    public List<Task> findAll(){
+    public List<Task> findAll() {
         return taskRepository.findAll();
     }
 
-    public Task findById(Long id){
+    public Task findById(Long id) {
         return taskRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public Task findByName(String name){
+    public Task findByName(String name) {
         return taskRepository.findByName(name);
     }
 
     @Transactional
-    public Task saveTask(TaskDTO data){
+    public Task saveTask(TaskDTO data) {
         Task task = new Task(data);
         return taskRepository.save(task);
     }
 
-    public Task updateTask(TaskDTO data, Long id){
-       Task taskSaved = findById(id);
-       Task updatedTask = new Task(data);
-       updatedTask.setId(taskSaved.getId());
-       return taskRepository.save(updatedTask);
+    public Task updateTask(TaskDTO data, Long id) {
+        Task taskSaved = findById(id);
+        Task updatedTask = new Task(data);
+        updatedTask.setId(taskSaved.getId());
+        return taskRepository.save(updatedTask);
     }
 
-    public void deleteTask(Long id){
+    public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
 }

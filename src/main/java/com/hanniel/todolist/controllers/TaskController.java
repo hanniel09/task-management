@@ -17,32 +17,32 @@ public class TaskController {
     TaskService taskService;
 
     @GetMapping()
-    public ResponseEntity<List<Task>> findAllTasks(){
+    public ResponseEntity<List<Task>> findAllTasks() {
         return new ResponseEntity<>(taskService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Task> findTaskById(@PathVariable Long id){
+    public ResponseEntity<Task> findTaskById(@PathVariable Long id) {
         return new ResponseEntity<>(taskService.findById(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/find/{name}")
-    public ResponseEntity<Task> findTaskByName(@PathVariable String name){
+    public ResponseEntity<Task> findTaskByName(@PathVariable String name) {
         return new ResponseEntity<>(taskService.findByName(name), HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<Task> createTask(@RequestBody TaskDTO data){
+    public ResponseEntity<Task> createTask(@RequestBody TaskDTO data) {
         return new ResponseEntity<>(taskService.saveTask(data), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Task> updateTask(@RequestBody TaskDTO data, @PathVariable Long id){
+    public ResponseEntity<Task> updateTask(@RequestBody TaskDTO data, @PathVariable Long id) {
         return new ResponseEntity<>(taskService.updateTask(data, id), HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id){
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
