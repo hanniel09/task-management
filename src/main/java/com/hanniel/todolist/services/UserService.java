@@ -5,6 +5,7 @@ import com.hanniel.todolist.domain.user.User;
 import com.hanniel.todolist.exceptions.RecordNotFoundException;
 import com.hanniel.todolist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,9 @@ public class UserService {
 
     public User createUser(UserDTO data) {
         User user = new User(data);
+        BCryptPasswordEncoder cryptPassword = new BCryptPasswordEncoder();
+        String passwordCrypt = cryptPassword.encode(user.getPassword());
+        user.setPassword(passwordCrypt);
         return userRepository.save(user);
     }
 
