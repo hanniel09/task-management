@@ -1,6 +1,7 @@
 package com.hanniel.todolist.controllers;
 
 import com.hanniel.todolist.Dtos.UserDTO;
+import com.hanniel.todolist.domain.tasks.Task;
 import com.hanniel.todolist.domain.user.User;
 import com.hanniel.todolist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    
 
     @GetMapping()
     public ResponseEntity<List<User>> getUsers(){
