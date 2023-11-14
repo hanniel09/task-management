@@ -1,6 +1,7 @@
 package com.hanniel.todolist.domain.tasks;
 
 import com.hanniel.todolist.Dtos.TaskDTO;
+import com.hanniel.todolist.domain.userRelationship.UserRelationship;
 import jakarta.persistence.*;
 
 @Entity()
@@ -10,6 +11,10 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_relationship_id")
+    private UserRelationship userRelationship;
 
     @Column(name = "name")
     private String name;
@@ -23,10 +28,11 @@ public class Task {
     public Task() {
     }
 
-    public Task(String name, TaskStatus taskStatus, String description) {
+    public Task(String name, TaskStatus taskStatus, String description, UserRelationship userRelationship) {
         this.name = name;
         this.taskStatus = taskStatus;
         this.description = description;
+        this.userRelationship = userRelationship;
     }
 
     public Task(TaskDTO data){
