@@ -12,7 +12,8 @@ public class UserRelationship {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "userRelationship")
+    @OneToMany()
+    @JoinColumn(name = "id_tasks")
     private List<Task> tasks;
 
     public UserRelationship() {
